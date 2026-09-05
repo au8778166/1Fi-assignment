@@ -2,7 +2,7 @@
 
 A shop-on-EMI marketplace built for the 1Fi SDE Intern assignment — users can browse products, pick a variant, choose a no-cost/low-cost EMI plan, and check out, all backed by a real REST API instead of hardcoded UI data.
 
-**Live demo:** [quickai-tawny.vercel.app](https://quickai-tawny.vercel.app/) &nbsp;•&nbsp; **Repo:** [github.com/au8778166/1Fi-assignment](https://github.com/au8778166/1Fi-assignment)
+**Live demo (frontend):** [1-fi-assignment-nhzq.vercel.app](https://1-fi-assignment-nhzq.vercel.app/) &nbsp;•&nbsp; **API (backend):** [onefi-assignment-tiuo.onrender.com](https://onefi-assignment-tiuo.onrender.com/) &nbsp;•&nbsp; **Repo:** [github.com/au8778166/1Fi-assignment](https://github.com/au8778166/1Fi-assignment)
 
 ---
 
