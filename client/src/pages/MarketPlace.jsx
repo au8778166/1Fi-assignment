@@ -47,7 +47,11 @@ const Marketplace = () => {
         setProducts(productList);
       } catch (err) {
         console.error("Failed to load products:", err);
-        setError("We couldn't load the marketplace right now.");
+
+        setError(
+          "We couldn't load the marketplace right now."
+        );
+
         setProducts([]);
       } finally {
         setLoading(false);
@@ -63,9 +67,14 @@ const Marketplace = () => {
     return products.filter((product) => {
       if (!product) return false;
 
-      const productName = product.name?.toLowerCase() || "";
-      const brand = product.brand?.toLowerCase() || "";
-      const productCategory = product.category?.toLowerCase() || "";
+      const productName =
+        product.name?.toLowerCase() || "";
+
+      const brand =
+        product.brand?.toLowerCase() || "";
+
+      const productCategory =
+        product.category?.toLowerCase() || "";
 
       const matchesSearch =
         !searchText ||
@@ -74,7 +83,8 @@ const Marketplace = () => {
         productCategory.includes(searchText);
 
       const matchesCategory =
-        category === "All" || product.category === category;
+        category === "All" ||
+        product.category === category;
 
       return matchesSearch && matchesCategory;
     });
@@ -86,7 +96,8 @@ const Marketplace = () => {
     }
 
     return products.filter(
-      (product) => product?.category === categoryName
+      (product) =>
+        product?.category === categoryName
     ).length;
   };
 
@@ -97,17 +108,24 @@ const Marketplace = () => {
 
   return (
     <div className="min-h-screen bg-[#f7f7f8] pb-28">
+
+      {/* ================= HERO ================= */}
       <section className="overflow-hidden rounded-b-[38px] bg-gradient-to-br from-[#40148c] via-[#5b21b6] to-[#7c3aed] px-5 pb-8 pt-8 text-white sm:px-8">
         <div className="mx-auto max-w-6xl">
+
           <div className="inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs font-semibold tracking-wide">
             ✦ NO-COST EMIs
           </div>
 
           <div className="mt-5 max-w-xl">
+
             <h1 className="text-[32px] font-bold leading-[1.08] sm:text-5xl">
               Shop today,
               <br />
-              <span className="font-normal italic">pay later</span>{" "}
+
+              <span className="font-normal italic">
+                pay later
+              </span>{" "}
               using mutual funds.
             </h1>
 
@@ -116,43 +134,74 @@ const Marketplace = () => {
               <br />
               Backed by your investments.
             </p>
+
           </div>
         </div>
       </section>
 
+      {/* ================= MAIN ================= */}
       <main className="mx-auto max-w-6xl px-4 sm:px-6">
+
+        {/* ================= TABS ================= */}
         <div className="relative z-10 -mt-6 rounded-[28px] bg-[#f1edff] p-1.5 shadow-sm">
+
           <div className="grid grid-cols-3">
+
+            {/* Top Brands */}
             <button
               type="button"
-              className="rounded-[22px] px-2 py-3 text-xs font-semibold text-gray-500 transition hover:bg-white/60 sm:text-sm"
+              className="relative rounded-[22px] px-2 py-3 text-xs font-semibold text-gray-500 transition hover:bg-white/60 sm:text-sm"
             >
               Top Brands
             </button>
 
+            {/* Nearby Stores */}
             <button
               type="button"
-              className="rounded-[22px] px-2 py-3 text-xs font-semibold text-gray-500 transition hover:bg-white/60 sm:text-sm"
+              className="relative rounded-[22px] px-2 py-3 text-xs font-semibold text-gray-500 transition hover:bg-white/60 sm:text-sm"
             >
               Nearby Stores
             </button>
 
+            {/* 1Fi Marketplace - ACTIVE */}
             <button
               type="button"
-              className="rounded-[22px] bg-white px-2 py-3 text-xs font-bold text-[#6d28d9] shadow-sm sm:text-sm"
+              className="relative rounded-[22px] bg-white px-2 py-3 text-xs font-bold text-[#6d28d9] shadow-sm sm:text-sm"
             >
               1Fi Marketplace
+
+              {/* Active underline */}
+              <span
+                className="
+                  absolute
+                  bottom-1
+                  left-1/2
+                  h-1
+                  w-8
+                  -translate-x-1/2
+                  rounded-full
+                  bg-[#6d28d9]
+                "
+              />
             </button>
+
           </div>
         </div>
 
+        {/* ================= SEARCH ================= */}
         <div className="mt-5 flex items-center gap-3 rounded-full border border-gray-200 bg-white px-5 py-3.5 shadow-sm">
-          <Search size={21} className="shrink-0 text-gray-400" />
+
+          <Search
+            size={21}
+            className="shrink-0 text-gray-400"
+          />
 
           <input
             type="text"
             value={search}
-            onChange={(event) => setSearch(event.target.value)}
+            onChange={(event) =>
+              setSearch(event.target.value)
+            }
             placeholder="Search products..."
             className="w-full bg-transparent text-sm outline-none placeholder:text-gray-400"
           />
@@ -166,10 +215,14 @@ const Marketplace = () => {
               Clear
             </button>
           )}
+
         </div>
 
+        {/* ================= CATEGORIES ================= */}
         <div className="mt-6">
+
           <div className="flex items-center justify-between">
+
             <h2 className="text-xl font-bold text-gray-900">
               Categories
             </h2>
@@ -182,25 +235,34 @@ const Marketplace = () => {
               See all
               <ChevronRight size={16} />
             </button>
+
           </div>
 
           <div className="mt-4 flex gap-3 overflow-x-auto pb-2">
+
             {categories.map((item) => {
               const Icon = item.icon;
-              const active = category === item.name;
-              const count = getCategoryCount(item.name);
+
+              const active =
+                category === item.name;
+
+              const count =
+                getCategoryCount(item.name);
 
               return (
                 <button
                   type="button"
                   key={item.name}
-                  onClick={() => setCategory(item.name)}
+                  onClick={() =>
+                    setCategory(item.name)
+                  }
                   className={`flex min-w-[92px] flex-col items-center justify-center gap-2 rounded-2xl px-3 py-3 transition ${
                     active
                       ? "bg-[#6d28d9] text-white shadow-sm"
                       : "bg-white text-gray-500 hover:bg-purple-50"
                   }`}
                 >
+
                   <Icon size={22} />
 
                   <span className="text-xs font-semibold">
@@ -210,20 +272,30 @@ const Marketplace = () => {
                   {count > 0 && (
                     <span
                       className={`text-[10px] font-medium ${
-                        active ? "text-purple-100" : "text-gray-400"
+                        active
+                          ? "text-purple-100"
+                          : "text-gray-400"
                       }`}
                     >
-                      {count} {count === 1 ? "product" : "products"}
+                      {count}{" "}
+                      {count === 1
+                        ? "product"
+                        : "products"}
                     </span>
                   )}
+
                 </button>
               );
             })}
+
           </div>
         </div>
 
+        {/* ================= PRODUCTS HEADER ================= */}
         <div className="mt-7 flex items-end justify-between">
+
           <div>
+
             <p className="text-xs font-bold uppercase tracking-wider text-[#6d28d9]">
               SHOP ON EMI
             </p>
@@ -231,53 +303,75 @@ const Marketplace = () => {
             <h2 className="mt-1 text-2xl font-bold text-gray-900">
               Featured products
             </h2>
+
           </div>
 
           {!loading && !error && (
             <span className="text-xs text-gray-400">
               {filteredProducts.length}{" "}
-              {filteredProducts.length === 1 ? "product" : "products"}
+              {filteredProducts.length === 1
+                ? "product"
+                : "products"}
             </span>
           )}
+
         </div>
 
+        {/* ================= PRODUCTS ================= */}
         <div className="mt-4">
+
+          {/* Loading */}
           {loading && (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
               {[1, 2, 3].map((item) => (
                 <div
                   key={item}
                   className="h-[390px] animate-pulse rounded-[28px] bg-white"
                 />
               ))}
+
             </div>
           )}
 
+          {/* Error */}
           {!loading && error && (
             <div className="rounded-[28px] bg-white px-6 py-14 text-center shadow-sm">
-              <div className="text-4xl">⚠️</div>
+
+              <div className="text-4xl">
+                ⚠️
+              </div>
 
               <h3 className="mt-3 font-bold text-gray-900">
                 Something went wrong
               </h3>
 
-              <p className="mt-2 text-sm text-gray-500">{error}</p>
+              <p className="mt-2 text-sm text-gray-500">
+                {error}
+              </p>
 
               <button
                 type="button"
-                onClick={() => window.location.reload()}
+                onClick={() =>
+                  window.location.reload()
+                }
                 className="mt-5 rounded-xl bg-[#6d28d9] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#5b21b6]"
               >
                 Try again
               </button>
+
             </div>
           )}
 
+          {/* No products */}
           {!loading &&
             !error &&
             filteredProducts.length === 0 && (
               <div className="rounded-[28px] bg-white px-6 py-14 text-center shadow-sm">
-                <div className="text-4xl">🔍</div>
+
+                <div className="text-4xl">
+                  🔍
+                </div>
 
                 <h3 className="mt-3 font-bold text-gray-900">
                   No products found
@@ -287,7 +381,8 @@ const Marketplace = () => {
                   Try a different search or category.
                 </p>
 
-                {(search || category !== "All") && (
+                {(search ||
+                  category !== "All") && (
                   <button
                     type="button"
                     onClick={handleSeeAll}
@@ -296,29 +391,39 @@ const Marketplace = () => {
                     View all products
                   </button>
                 )}
+
               </div>
             )}
 
+          {/* Product cards */}
           {!loading &&
             !error &&
             filteredProducts.length > 0 && (
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {filteredProducts.map((product) => (
-                  <ProductCard
-                    key={
-                      product._id ||
-                      product.id ||
-                      product.slug
-                    }
-                    product={product}
-                  />
-                ))}
+
+                {filteredProducts.map(
+                  (product) => (
+                    <ProductCard
+                      key={
+                        product._id ||
+                        product.id ||
+                        product.slug
+                      }
+                      product={product}
+                    />
+                  )
+                )}
+
               </div>
             )}
+
         </div>
+
       </main>
 
+      
       <BottomNav />
+
     </div>
   );
 };
